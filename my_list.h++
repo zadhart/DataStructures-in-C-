@@ -57,6 +57,7 @@ public:
             sNode* nn = n->next->next;
             delete n->next;
             n->next = nn;
+            this->size--;
         }
     }
 

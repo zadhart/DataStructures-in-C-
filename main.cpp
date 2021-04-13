@@ -1,27 +1,27 @@
 #include <iostream>
 #include <string>
 #include "my_list.h++"
+#include "my_queue.h++"
 
 using namespace std;
 
 int main() {
+    Queue<string> minhaFila;
 
-    LinkedList<string> centopeia_humana;
+    minhaFila.enqueue("Greg");
+    minhaFila.enqueue("Moises");
+    minhaFila.enqueue("Marcos");
+    minhaFila.enqueue("Erigleison");
 
-    centopeia_humana.push("Gregory");
-    centopeia_humana.push("Moises");
-    centopeia_humana.push("Marcos");
-    centopeia_humana.push("Erigleison");
+    minhaFila.printQueue();
 
-    centopeia_humana.printList();
+    cout << "Size of the queue: " << minhaFila.getSize() << "\n";
 
-    cout << "Size of centopeia: " << centopeia_humana.getSize() << "\n";
+    minhaFila.dequeue();
 
-    centopeia_humana.pop(2);
+    minhaFila.printQueue();
 
-    centopeia_humana.printList();
-
-    cout << "Size of centopeia: " << centopeia_humana.getSize() << "\n";
+    cout << "Size of the queue: " << minhaFila.getSize() << "\n";
 
     return 0;
 }
