@@ -24,6 +24,11 @@ public:
         this->neighbors[vertex2][vertex1] = weight;
     }
 
+    void removeEdge(int vertex1, int vertex2){
+        this->neighbors[vertex1][vertex2] = 0;
+        this->neighbors[vertex2][vertex1] = 0;
+    }
+
     void addVertex(T newData, vector<int> targetNodes = {}){
         this->allNodesData.push_back(newData);
         this->neighbors.push_back(vector<int>(this->allNodesData.size()));
@@ -49,11 +54,23 @@ int main() {
 
     my_graph.addEdge(2,3);
     my_graph.addEdge(4,0);
+    my_graph.addEdge(3,1);
 
     for(int i = 0; i < my_graph.allNodesData.size(); i++){
         cout << my_graph.allNodesData[i] << " ";
     }
     cout << "\n";
+
+    for(int i = 0; i < my_graph.neighbors.size(); i++){
+        for(int x = 0; x < my_graph.neighbors[i].size(); x++){
+            cout << my_graph.neighbors[i][x] << " ";
+        }
+        cout << "\n";
+    }
+
+    cout << "\n";
+
+    my_graph.removeEdge(3, 1);
 
     for(int i = 0; i < my_graph.neighbors.size(); i++){
         for(int x = 0; x < my_graph.neighbors[i].size(); x++){
