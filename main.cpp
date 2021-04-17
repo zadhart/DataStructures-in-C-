@@ -42,35 +42,39 @@ public:
     }
 
     void readGraph(string g) {
-
-        //The code above find the number of vertex of a given graph
-        int y = 0;
-        for (int i = 0; i < g.size(); i++) {
-            if (g[i] == ';') {
-                y++;
+        vector<int> nodes;
+        for(int i = 0; i < g.size(); i++){
+            if(g[i] == ';' || i == g.size() - 1){
+                this->allNodesData.push_back("None");
+                this->neighbors.push_back(nodes);
+                nodes.clear();
+            }
+            else{
+                if(g[i] != ',' && g[i] != '{' && g[i] != '}'){
+                    nodes.push_back(g[i] - '0');
+                }
             }
         }
-        y++;
-        cout << y << "\n";
+    }
 
-        cout << "g size: " << g.size() << "\n";
-
-        int init = 0;
-        int last = 9;
-
-        for(int i = 0; i < y; i++){
-            cout << "init: " << init << " last: " << last << "\n";
-            cout << g.substr(init, last) << "\n";
-            init = last + 1;
-            last = last + 10;
+    void printGraph(){
+        for(int i = 0; i < this->neighbors.size(); i++){
+            for(int x = 0; x < this->neighbors[i].size(); x++){
+                cout << this->neighbors[i][x] << " ";
+            }
+            cout << "\n";
         }
     }
 };
 
 int main() {
     Graph<string> my_graph;
-    my_graph.readGraph("{0,0,0,3};{0,2,0,4};{0,0,0,0};{5,5,5,5}");
 
+    //Example of reading a graph from a string:
+    my_graph.readGraph("{0,0,0,3,3};{0,2,0,4,1};{0,0,0,0,0};{5,5,5,5,6};{8,5,3,7,8}");
+    my_graph.printGraph();
+
+    //Example of usage:
     /*
     my_graph.addVertex("Greg");
     my_graph.addVertex("Moises");
@@ -87,36 +91,11 @@ int main() {
     }
     cout << "\n";
 
-    for(int i = 0; i < my_graph.neighbors.size(); i++){
-        for(int x = 0; x < my_graph.neighbors[i].size(); x++){
-            cout << my_graph.neighbors[i][x] << " ";
-        }
-        cout << "\n";
-    }
-
-    cout << "\n";
+    my_graph.printGraph();
 
     my_graph.removeEdge(3, 1);
 
-
-
-    for(int i = 0; i < my_graph.neighbors.size(); i++){
-        for(int x = 0; x < my_graph.neighbors[i].size(); x++){
-            cout << my_graph.neighbors[i][x] << " ";
-        }
-        cout << "\n";
-    }
-     */
-    /*
-    string g = "{0,0,0,0,1},{0,0,0,0,4},{0,0,0,4,2}";
-
-    for(int i = 0; i < g.size(); i++){
-        if(g[i] != '{'){
-            if(g[i] != '}'){
-                cout << g[i] << " ";
-            }
-        }
-    }
+    my_graph.printGraph();
     */
 
     return 0;
